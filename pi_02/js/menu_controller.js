@@ -10,6 +10,10 @@ function exit (){
 	name = "";
 }
 
+function inici (){
+	loadpage("../index.html");
+}
+
 function options(){
 	// TODO: Open options menu
 	console.log("Options menu button");
