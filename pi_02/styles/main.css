@@ -35,3 +35,14 @@ button.menu-object:hover:not(:active){
 	height: 5em;
 }
 
+
+.cartes{
+	display: grid;
+    grid-template-columns: 200px 200px;
+    grid-auto-rows: minmax(200px, auto);
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    grid-row: 1;
+}
