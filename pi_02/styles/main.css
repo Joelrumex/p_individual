@@ -38,8 +38,8 @@ button.menu-object:hover:not(:active){
 
 .cartes{
 	display: grid;
-    grid-template-columns: 200px 200px;
-    grid-auto-rows: minmax(200px, auto);
+    grid-template-columns: 10em 10em;
+    grid-auto-rows: minmax(10em, auto);
     align-items: center;
     justify-content: center;
     align-content: center;
