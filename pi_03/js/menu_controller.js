@@ -6,6 +6,10 @@ function start_game(){
 	loadpage("./html/game.html");
 }
 
+function inici (){
+	loadpage("../index.html");
+}
+
 function exit (){
 	if (name != ""){
 		alert("Leaving " + name + "'s game");

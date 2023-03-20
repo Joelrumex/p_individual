@@ -18,6 +18,10 @@ function practica2 (){
 	loadpage("./pi_02/index.html")
 }
 
+function practica3 (){
+	loadpage("./pi_03/index.html")
+}
+
 function options(){
 	// TODO: Open options menu
 	console.log("Options menu button");
