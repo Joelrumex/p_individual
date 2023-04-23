@@ -8,18 +8,28 @@
 		<title> My first game - Menu </title>
 	</head>
 	<body>
-		<p class="menu-object" id="title">Memory menu</p>
-		<button class="menu-object" onclick="start_game()"> 
-			Start Game 
-		</button>
-		<button class="menu-object" onclick="options()"> 
-			Options 
-		</button>
-		<button class="menu-object" onclick="exit()"> 
-			Exit 
-		</button>
-		<button class="menu-object" onclick="inici()"> 
-			Tornar enrrere
-		</button>
+		<div id="menu">
+			<p class="menu-object" id="title">{{ menuTitle }}</p>
+    		<button class="menu-object" @click="joc"> 
+				Jugar 
+			</button>
+			<button class="menu-object" @click="puntuacions"> 
+				Puntuacions 
+			</button>
+			<button class="menu-object" @click="opcions"> 
+				Opcions
+			</button>
+			<button class="menu-object" @click="carregar"> 
+				Carregar
+			</button>
+			<button class="menu-object" @click="sortir"> 
+				Sortir
+			</button>
+		</div>
 	</body>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="./js/menu_controller.js"></script>
+	<script src="./js/loader.js"></script>
 </html>
+
+	

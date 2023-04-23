@@ -1,24 +1,23 @@
-function start_game(){
-	name = prompt("User name");
-	
-	sessionStorage.setItem("username", name);
-	
-	loadpage("./html/game.html");
-}
-
-function inici (){
-	loadpage("../index.html");
-}
-
-function exit (){
-	if (name != ""){
-		alert("Leaving " + name + "'s game");
+var menu_controller = new Vue({
+	el: "#menu",
+	data: {
+		  menuTitle: "Memory menu",
+	},
+	methods: {
+	joc: function() {
+		console.log("HOLA")
+	},
+	puntuacions: function() {
+		loadpage("./html/joc.html")
+	},
+	opcions: function() {
+		loadpage("./html/joc.html")
+	},
+	carregar: function() {
+		loadpage("./html/joc.html")
+	},
+	sortir: function() {
+		loadpage("./html/joc.html")
+	},
 	}
-	name = "";
-}
-
-function options(){
-	loadpage("./html/options.html");
-}
-
-
+});
