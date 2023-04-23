@@ -22,6 +22,10 @@ function practica3 (){
 	loadpage("./pi_03/index.html")
 }
 
+function treballIndividual (){
+	loadpage("./treball_individual/index.html")
+}
+
 function options(){
 	// TODO: Open options menu
 	console.log("Options menu button");
