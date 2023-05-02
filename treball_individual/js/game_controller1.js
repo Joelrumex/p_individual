@@ -1,5 +1,5 @@
 var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
-
+var temps = 0;
 
 class Example extends Phaser.Scene
 {
@@ -8,6 +8,7 @@ class Example extends Phaser.Scene
         super();
         this.cards = null;
         this.numCards = JSON.parse(json).cards;
+        this.dificulty = JSON.parse(json).dificulty;
 		this.firstClick = null;
 		this.score = 100;
 		this.correct = 0;
@@ -25,49 +26,58 @@ class Example extends Phaser.Scene
     }
 
     create (){	
+        
         let arraycards = ['cb', 'co', 'sb', 'so', 'tb', 'to'];
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
+		Phaser.Utils.Array.Shuffle(arraycards);
         arraycards = arraycards.slice(0, this.numCards);
 		arraycards = arraycards.concat(arraycards);
 		Phaser.Utils.Array.Shuffle(arraycards);
         for (let index = 0; index < arraycards.length; index++) {
             this.add.image(250+index*100, 300, arraycards[index]);
         }
+        if (this.dificulty === "normal" ) temps = 1000;
+		else if (this.dificulty === "easy" ) temps = 2000;
+		else if (this.dificulty === "hard" ) temps = 500;
         this.cards = this.physics.add.staticGroup();
-        for (let index = 0; index < arraycards.length; index++) {
-            this.cards.create(250+index*100, 300, 'back');
-        }
-		let i = 0;
-		this.cards.children.iterate((card)=>{
-			card.card_id = arraycards[i];
-			i++;
-			card.setInteractive();
-			card.on('pointerup', () => {
-				card.disableBody(true,true);
-				if (this.firstClick){
-					if (this.firstClick.card_id !== card.card_id){
-						this.score -= 20;
-						this.firstClick.enableBody(false, 0, 0, true, true);
-						card.enableBody(false, 0, 0, true, true);
-						if (this.score <= 0){
-							alert("Game Over");
-							loadpage("../");
-						}
-					}
-					else{
-						this.correct++;
-						if (this.correct >= 2){
-							alert("You Win with " + this.score + " points.");
-							loadpage("../");
-						}
-					}
-					this.firstClick = null;
-				}
-				else{
-					this.firstClick = card;
-				}
-			}, card);
-		});
+        setTimeout(() => {
+            for (let index = 0; index < arraycards.length; index++) {
+                this.cards.create(250+index*100, 300, 'back');
+            }
+            let i = 0;
+		    this.cards.children.iterate((card)=>{
+                card.card_id = arraycards[i];
+                i++;
+                card.setInteractive();
+                card.on('pointerup', () => {
+                    card.disableBody(true,true);
+                    if (this.firstClick){
+                        if (this.firstClick.card_id !== card.card_id){
+                            this.score -= 20;
+                            this.firstClick.enableBody(false, 0, 0, true, true);
+                            card.enableBody(false, 0, 0, true, true);
+                            if (this.score <= 0){
+                                alert("Game Over");
+                                loadpage("../");
+                            }
+                        }
+                        else{
+                            this.correct++;
+                            if (this.correct >= this.numCards){
+                                alert("You Win with " + this.score + " points.");
+                                loadpage("../");
+                            }
+                        }
+                        this.firstClick = null;
+                    }
+                    else{
+                        this.firstClick = card;
+                    }
+                }, card);
+		    });
+        }, temps);
+        
+		
 	}
 }
 
